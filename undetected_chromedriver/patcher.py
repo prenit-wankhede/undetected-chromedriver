@@ -62,10 +62,10 @@ class Patcher(object):
         self.executable_path = None
         prefix = secrets.token_hex(8)
 
-        if not os.path.exists(self.data_path):
-            os.makedirs(self.data_path, exist_ok=True)
-
         if not executable_path:
+            if not os.path.exists(self.data_path):
+                os.makedirs(self.data_path, exist_ok=True)
+
             self.executable_path = os.path.join(
                 self.data_path, "_".join([prefix, self.exe_name])
             )
